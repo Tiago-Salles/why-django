@@ -1,0 +1,36 @@
+services:
+  catalog_ops:
+    build: 
+      context: .
+      tags:
+        - catalog_ops:dev
+    volumes:
+      - .:/catalog_ops
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    networks:
+      - catalog_ops_net
+
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - catalog_ops_net
+
+volumes:
+  postgres_data:
+
+networks:
+  catalog_ops_net:
