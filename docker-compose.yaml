@@ -26,11 +26,24 @@ services:
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
-    networks:
-      - catalog_ops_net
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      MYSQL_DATABASE: catalog_ops
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
 
 volumes:
   postgres_data:
+  mysql_data:
 
 networks:
   catalog_ops_net:

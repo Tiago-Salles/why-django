@@ -45,7 +45,6 @@ class ProductsCollection(BaseModel):
     products = models.ManyToManyField(
         Product,
         blank=True,
-        null=True,
         related_name="products",
     )
     description = models.TextField(blank=True)

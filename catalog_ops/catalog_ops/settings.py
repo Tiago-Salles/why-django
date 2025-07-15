@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Plugins
+    'rest_framework',
     # My Apps
     "apps.catalog"
 ]
@@ -76,11 +78,19 @@ WSGI_APPLICATION = 'catalog_ops.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'catalog_ops',
+        'USER': 'root',
+        'PASSWORD': 'mysql',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'default1': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'catalog_ops',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
